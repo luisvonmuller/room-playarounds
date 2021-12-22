@@ -3,6 +3,7 @@ use super::*;
 use crate::peer::Peer;
 pub mod test_helper;
 use test_helper::*;
+
 #[test]
 fn zero_size_rooms_vec() {
     let mut rooms_vec = Vec::<Room>::new();
@@ -45,4 +46,15 @@ fn create_a_room_into_acr_mutex() {
     rooms.lock().unwrap().push(sample_room.clone());
 
     assert_eq!(&rooms.lock().unwrap()[0], &sample_room);
+}
+#[test]
+fn kill_a_room_on_arc_mutex() {
+    let mut rooms: Rooms = generate_arc_mutex_room_vector();
+    let sample_room: Room = generate_semple_room();
+    rooms.lock().unwrap().push(sample_room.clone());
+
+    assert_eq!(&rooms.lock().unwrap()[0], &sample_room);
+    let _killing = rooms.lock().unwrap()[0].kill();
+    println!("{:#?}", rooms.lock().unwrap());
+    //assert_eq!(rooms.lock().unwrap().len(), 0);
 }
