@@ -4,7 +4,7 @@ use super::*;
 use crate::peer::Peer;
 
 pub fn generate_arc_mutex_room_vector() -> Rooms {
-    let mut rooms_vec = Vec::<Room>::new();
+    let mut rooms_vec = Vec::<Box<Room>>::new();
     let rooms: Rooms = Arc::new(Mutex::new(rooms_vec)); // 0 size vector
     assert_eq!(rooms.lock().unwrap().len(), 0);
     rooms

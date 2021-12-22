@@ -7,12 +7,6 @@ pub struct Room {
     pub id: u64,
 }
 
-impl Drop for Room {
-    fn drop(&mut self) {
-        println!("Dropping Room with data `{:#?}`!", self);
-    }
-}
-
 // impl Room {
 //     pub fn kill(&mut self) -> Result<(), ()> {
 //         drop(self);
